@@ -6,7 +6,8 @@ rails_dispatcher = lambda do |model: nil, find_by: :id, **options|
   return options unless model
 
   model = eval(model) if model.is_a? String
-  klass = model.is_a?(ActiveRecord::Relation) ? model.klass : model
+  # klass = model.is_a?(ActiveRecord::Relation) ? model.klass : model
+  klass = model
 
   coercer = lambda do |value|
     return value if value.nil? || value.is_a?(klass)
